@@ -32,7 +32,7 @@ public class TicTacToe {
     
     public func validate_input(row : Int, col : Int) -> Bool {
         assert(row <= 2 && col <= 2);
-        if (board[row][col] == SYMBOL.N) {
+        if (total_moves < 9 && board[row][col] == SYMBOL.N) {
             return true;
         } else {
             return false;
@@ -42,18 +42,22 @@ public class TicTacToe {
     private func check_winner(row : Int, col: Int) -> String {
         if ((row == 0 && col == 0) || (row == 1 && col == 1) || (row == 2 && col == 2)) {
             if (board[0][0] == board[1][1] && board[0][0] == board[2][2]) {
+                total_moves = 9;
                 return "Congratulations, You Won!";
             }
         }
         if ((row == 0 && col == 2) || (row == 1 && col == 1) || (row == 2 && col == 0)) {
             if (board[0][2] == board[1][1] && board[0][2] == board[2][0]) {
+                total_moves = 9;
                 return "Congratulations, You Won!";
             }
         }
         if (board[row][0] == board[row][1] && board[row][2] == board[row][0]) {
+            total_moves = 9;
             return "Congratulations, You Won!";
         }
         if (board[0][col] == board[1][col] && board[0][col] == board[2][col]) {
+            total_moves = 9;
             return "Congratulations, You Won!";
         }
         if (total_moves == 9) {
